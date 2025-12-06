@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 app = FastAPI()
 
 # SUAS CREDENCIAIS DA DATAFORSEO 
-API_LOGIN = "SEU_LOGIN"
-API_PASSWORD = "SUA_SENHA"
+API_LOGIN = "marketing4@madel.com.br"
+API_PASSWORD = "705c13a5683c3332"
 
 # -------------------------
 # Extrair título da página
