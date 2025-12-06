@@ -32,9 +32,13 @@ def get_keyword_data(term):
     endpoint = "https://api.dataforseo.com/v3/keywords_data/google_trends/explore/live"
 
     payload = {
-        "keywords": [term],
-        "location_code": 2076,  # Brasil
-        "language_code": "pt"
+        "tasks": [
+            {
+                "keywords": [term],
+                "location_code": 2076,  # Brasil
+                "language_code": "pt"
+            }
+        ]
     }
 
     response = requests.post(
@@ -44,6 +48,7 @@ def get_keyword_data(term):
     )
 
     return response.json()
+
 
 # -------------------------
 # Endpoint principal
