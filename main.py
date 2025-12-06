@@ -25,6 +25,34 @@ def get_product_title(url):
 
     return "Produto"
 
+
+# -------------------------
+# Limpar o titulo
+# -------------------------
+
+import re
+
+def clean_keyword(title):
+    # deixa tudo minúsculo
+    title = title.lower()
+
+    # remove caracteres especiais
+    title = re.sub(r"[^a-zA-Z0-9áéíóúãõâêôç\s]", "", title)
+
+    # converte título longo em 3–4 palavras chave no máximo
+    words = title.split()
+
+    # regra simples:
+    # pega apenas palavras relevantes
+    filtered = [w for w in words if len(w) > 2]
+
+    # limita a 3 palavras
+    short = filtered[:3]
+
+    return " ".join(short)
+
+
+
 # -------------------------
 # Consultar DataForSEO - Trends e Volume
 # -------------------------
@@ -56,9 +84,14 @@ def get_keyword_data(term):
 @app.get("/analyze")
 def analyze(url: str):
     title = get_product_title(url)
-    keyword_data = get_keyword_data(title)
+
+    # limpa o título para Google Trends
+    keyword = clean_keyword(title)
+
+    keyword_data = get_keyword_data(keyword)
 
     return {
         "product_title": title,
+        "keyword_used": keyword,
         "keyword_data": keyword_data
     }
