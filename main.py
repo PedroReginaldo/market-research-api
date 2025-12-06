@@ -57,17 +57,15 @@ def clean_keyword(title):
 # Consultar DataForSEO - Trends e Volume
 # -------------------------
 def get_keyword_data(term):
-    endpoint = "https://api.dataforseo.com/v3/keywords_data/google_trends/explore/live"
+    endpoint = "https://api.dataforseo.com/v3/keywords_data/google_trends/graph/live"
 
     payload = {
         "tasks": [
             {
                 "keywords": [term],
                 "location_code": 2076,  # Brasil
-                "language_code": "pt",
-                "time_range": "today 3-m",  # últimos 3 meses
-                "category": 0,  # categoria geral
-                "search_type": "web"  # busca web padrão
+                "time_range": "today 3-m",
+                "search_type": "web"
             }
         ]
     }
@@ -79,6 +77,7 @@ def get_keyword_data(term):
     )
 
     return response.json()
+
 
 
 # -------------------------
